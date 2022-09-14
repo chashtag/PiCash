@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if [ "$USE_EARNAPP" == "y" ]
+then
+    if [ ! -f /usr/bin/earnapp ]
+    then
+        curl -L https://brightdata.com/static/earnapp/install.sh > /tmp/earnapp.sh && bash /tmp/earnapp.sh -y
+    else
+        /usr/bin/earnapp run
+    fi
+else
+    sleep 60 #TODO: make this better, maybe make s6 just not launch it goodnuff for now
+fi

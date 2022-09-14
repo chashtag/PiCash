@@ -19,5 +19,6 @@ RUN DEBIAN_FRONTEND='noninteractive' \
 RUN curl https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz -SLo- | tar -C / -Jxpf - && \
     curl https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-aarch64.tar.xz -SLo- | tar -C / -Jxpf -
 
-
 COPY rootfs/ /
+
+RUN useradd -ms /bin/bash picash
