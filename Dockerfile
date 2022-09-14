@@ -20,3 +20,4 @@ RUN curl https://github.com/just-containers/s6-overlay/releases/download/${S6_OV
     curl https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-aarch64.tar.xz -SLo- | tar -C / -Jxpf -
 
 
+COPY rootfs/ /
