@@ -58,7 +58,7 @@ build and run the container via `./run.sh`
 ---
 <br><br>
 # Earnapp
-Register an account.
+Register for an account. Set `USE_EARNAPP` to `y` in the `settings.conf` file.
 
 The container will give you a link that you need to paste into your browser to "link" the worker to your account. <b>This needs to be repeated per container instance!</b>
 <br><br><br>
@@ -67,29 +67,73 @@ To get this code you can execute command below .
 ``` 
 docker exec -ti picash earnapp register | grep -Eo 'https.+'
 ```
-Set `USE_EARNAPP` to `y` in the `settings.conf` file.
+
 <br><br>Example
 ```
+# Earnapp
 USE_EARNAPP=y
 ```
 <br><br>
 # Honeygain
 
-Register an account.
+Register for an account.
 In the settings file, add your email to `HG_EMAIL` and password to `HG_PASSWORD` and set the `USE_HONEYGAIN` to `y`.
 <br><br>Example
 ```
+# Honeygain
 USE_HONEYGAIN=y
 HG_EMAIL='example@example.com'
 HG_PASSWORD='MyP@$$W0rd'
 ```
 <br><br><br>
 # Packet Stream
-Register an account. In the settings file set `USE_PACKET_STREAM` to `y` and `PS_ID` to your CID. You can find your CID by navigating to the [Download page](https://packetstream.io/dashboard/download) and scrolling the bottom where it give you "Linux" instructions. Inside that blob of text you will find your CID, below is a picture of where it can be found.
+Register for an account. In the settings file set `USE_PACKET_STREAM` to `y` and `PS_ID` to your CID. You can find your CID by navigating to the [Download page](https://packetstream.io/dashboard/download) and scrolling the bottom where it give you "Linux" instructions. Inside that blob of text you will find your CID, below is a picture of where it can be found.
 
 ![cid](https://github.com/chashtag/PiCash/blob/images/images/packetstream.png?raw=true)
 <br><br>Example
 ```
+# Packet Stream
 USE_PACKET_STREAM=y
 PS_ID=abc123
+```
+<br><br><br>
+
+# Peer2Profit
+Register for an account. In the settings file set `USE_PEER2PROFIT` to `y` and `P2_EMAIL` to your email.
+
+If you would like to specify an interface to use, you must specify the IP address of the interface. The DNS is csv of preferred DNS Servers.
+<b>If these settings are omitted, it will just default to what the container is using</b>
+<br><br>Example
+```
+# Peer2Profit
+USE_PEER2PROFIT=y
+P2_EMAIL='example@example.com'
+P2_INTERFACE=
+P2_DNS=
+```
+
+
+
+# Pawns.app(IPPawns)
+Register for an account. In the settings file, add your email to `PA_EMAIL` and password to `PA_PASSWORD` and set the `USE_PAWNSAPP` to `y`.
+
+<br><br>Example
+```
+# Pawns.app(IPPawns)
+USE_PAWNSAPP=y
+PA_EMAIL='example@example.com
+PA_PASSWORD='MyP@$$W0rd'
+```
+
+
+# Traffmonetizer
+Register for an account. In the settings file, add your `Application Token` to `TRAFF_TOKEN` and set the `USE_TRAFFMONETIZER` to `y`.
+
+You can find the `Application Token` on your [dashboard](https://app.traffmonetizer.com/dashboard).
+
+<br><br>Example
+```
+# Traffmonetizer
+USE_TRAFFMONETIZER=y
+TRAFF_TOKEN='ZXhhbXBsZUVYQU1QTEVleGFtcGxlRVhBTVBMRQo='
 ```
