@@ -10,8 +10,11 @@ else
 fi
 docker build . -t picash
 
-docker run -d --rm --env-file ${SCRIPT_DIR}/settings.conf --name picash picash
-
-sleep 30
-
-docker exec -ti picash earnapp register | grep -Eo 'https.+'
+docker run -d --env-file ${SCRIPT_DIR}/settings.conf --name picash picash
+if [[ "$USE_EARNAPP" == "y" ]]
+then
+    echo Waiting for 30 sec to stand up, will print the earnapp link when done
+    sleep 30
+    echo Use this link to register your worker
+    docker exec -ti picash earnapp register | grep -Eo 'https.+'
+fi
