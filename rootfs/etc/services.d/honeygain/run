@@ -1,2 +1,4 @@
 #!/command/with-contenv sh
-/bin/earnapp_service
+/bin/honeygain_service
+
+

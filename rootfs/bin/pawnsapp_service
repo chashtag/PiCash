@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if [ "$USE_PAWNSAPP" == "y" ]
+then
+    /command/s6-setuidgid picash \
+        /usr/bin/pawns-cli \
+        -email=${PA_USERNAME} \
+        -password=${PA_PASSWORD} \
+        -device-name=`hostname` \
+        -accept-tos
+else
+    sleep 60 #TODO: make this better, maybe make s6 just not launch it goodnuff for now
+fi

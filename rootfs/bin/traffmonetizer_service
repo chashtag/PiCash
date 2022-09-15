@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ "$USE_PAWNSAPP" == "y" ]
+    if [-z $TRAFF_TOKEN ]
+    then
+        echo TRAFF_TOKEN Not set
+        exit 1
+    fi
+then
+    /command/s6-setuidgid picash \
+        /opt/traffmonetizer/Cli start accept --token $TRAFF_TOKEN
+
+else
+    sleep 60 #TODO: make this better, maybe make s6 just not launch it goodnuff for now
+fi

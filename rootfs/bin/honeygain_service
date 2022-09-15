@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if [ "$USE_HONEYGAIN" == "y" ]
+then
+    /command/s6-setuidgid picash \
+        /usr/bin/qemu-x86_64 -E LD_PRELOAD=/opt/honeygain/libhg.so.1.0.0 /opt/honeygain/honeygain \
+        -tou-accept \
+        -email $HG_EMAIL \
+        -pass $HG_PASSWORD \
+        -device `hostname`
+else
+    sleep 60 #TODO: make this better, maybe make s6 just not launch it goodnuff for now
+fi

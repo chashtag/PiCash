@@ -1,0 +1,4 @@
+#!/command/with-contenv sh
+/bin/traffmonetizer_service
+
+

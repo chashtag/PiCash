@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ "$USE_PAWNSAPP" == "y" ]
+then
+    /command/s6-setuidgid picash \
+        /usr/bin/p2pclient -l ${P2_EMAIL} -n "$P2_INTERFACE;$P2_DNS"
+
+else
+    sleep 60 #TODO: make this better, maybe make s6 just not launch it goodnuff for now
+fi

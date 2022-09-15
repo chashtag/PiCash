@@ -1,13 +1,14 @@
 # PiCash
 
-A lightweight docker image running many "passive" income applications, built for a Raspberry Pi.
+A lightweight docker image running many "passive" income applications, built for a Raspberry Pi and the Ubiquity Dream Machine Pro (UDM-Pro).
 
 Currenlty installed programs are:
-- Honeygain
-- EarnApp 
-- IPRoyal Pawns 
-- PacketStream
-- Peer2Profit
+- [x] Honeygain
+- [x] EarnApp 
+- [x] Pawns.app (IPRoyal Pawns)
+- [x] PacketStream
+- [x] Peer2Profit
+- [ ] Traffmonetizer
 
 64bit Raspberry Pi's are supported (4, z2w, 3b+)
 
@@ -30,6 +31,22 @@ You will need an account at each of these sites
 
 
 ---
-Install
+## Install
+
+
+
 
 todo
+
+
+---
+## Earnapp
+
+To register the host you must copy a paste a link into your browser that you are logged in to earnapp with.
+To get this code you can execute command below .
+
+``` 
+docker exec -ti picash earnapp register | grep -Eo 'https.+'
+```
+
+## Honeygain

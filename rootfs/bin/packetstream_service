@@ -1,0 +1,23 @@
+#!/bin/sh
+
+if [ "$USE_PACKETSTREAM" == "y" ]
+then
+
+    while true;
+    do 
+        PID=$(ps -aux | grep exit-node | grep -v grep | awk '{print $2}')
+        LC=$(netstat -punta | grep $PID | wc -l)
+        if [[ $LC -le 1 ]];
+        then
+            echo $PID , $LC exiting
+            kill -9 $PID
+            /command/s6-setuidgid picash /usr/bin/qemu-x86_64 /opt/packetstream/exit-node "${PS_ID}?client_version=20.202.1548"&
+            sleep 10
+        else
+            echo $PID , $LC not exiting
+            sleep 10
+        fi
+    done
+else
+    sleep 60 #TODO: make this better, maybe make s6 just not launch it goodnuff for now
+fi
