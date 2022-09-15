@@ -85,4 +85,11 @@ HG_PASSWORD='MyP@$$W0rd'
 ```
 <br><br><br>
 # Packet Stream
-Register an account. In the settings file set `USE_PACKET_STREAM` to `y` and `PS_ID` to your 
+Register an account. In the settings file set `USE_PACKET_STREAM` to `y` and `PS_ID` to your CID. You can find your CID by navigating to the [Download page](https://packetstream.io/dashboard/download) and scrolling the bottom where it give you "Linux" instructions. Inside that blob of text you will find your CID, below is a picture of where it can be found.
+
+![cid](https://github.com/chashtag/PiCash/blob/images/images/packetstream.png?raw=true)
+<br><br>Example
+```
+USE_PACKET_STREAM=y
+PS_ID=abc123
+```
