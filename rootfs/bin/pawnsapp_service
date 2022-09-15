@@ -1,10 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
-if [ "$USE_PAWNSAPP" == "y" ]
+if [[ "$USE_PAWNSAPP" == "y" ]]
 then
-    /command/s6-setuidgid picash \
-        /usr/bin/pawns-cli \
-        -email=${PA_USERNAME} \
+    /usr/bin/pawns-cli \
+        -email=${PA_EMAIL} \
         -password=${PA_PASSWORD} \
         -device-name=`hostname` \
         -accept-tos

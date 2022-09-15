@@ -7,13 +7,15 @@ RUN DEBIAN_FRONTEND='noninteractive' \
     && apt-get install -y apt-utils \
     && apt-get install -y \
        apt-transport-https \
-        \
        bash \
        ca-certificates \
        curl \
+       iproute2 \
        nano \
        net-tools \
-       qemu-system-x86-64 \
+       procps \
+       qemu-user \
+       wget \
        xz-utils \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -21,7 +23,6 @@ RUN DEBIAN_FRONTEND='noninteractive' \
 RUN curl https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz -SLo- | tar -C / -Jxpf - && \
     curl https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-aarch64.tar.xz -SLo- | tar -C / -Jxpf -
 
-COPY rootfs/ /
 
 # HONEYGAIN
 RUN mkdir -p /opt/honeygain && \ 
@@ -50,3 +51,8 @@ RUN curl -L https://github.com/chashtag/PiCash/releases/download/bin/p2pclient_0
 RUN mkdir -p /opt/traffmonetizer && \
     curl -L https://github.com/chashtag/PiCash/releases/download/bin/traffmonetizer.tar.gz | tar -C /opt/traffmonetizer -zxf -
 
+COPY rootfs/ /
+
+RUN useradd -ms /bin/bash picash
+
+ENTRYPOINT [ "/init" ]

@@ -1,4 +1,4 @@
-#!/command/with-contenv sh
-/bin/honeygain_service
+#!/command/with-contenv bash
+exec /bin/honeygain_service
 
 

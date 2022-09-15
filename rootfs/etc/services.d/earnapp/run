@@ -1,2 +1,2 @@
-#!/command/with-contenv sh
-/bin/earnapp_service
+#!/command/with-contenv bash
+exec /bin/earnapp_service

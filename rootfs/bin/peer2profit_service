@@ -1,8 +1,17 @@
-#!/bin/sh
+#!/bin/bash
 
-if [ "$USE_PAWNSAPP" == "y" ]
+if [[ "$USE_PEER2PROFIT" == "y" ]]
 then
-    /command/s6-setuidgid picash \
+    if [[ -z "$P2_INTERFACE" ]]
+    then
+        P2_INTERFACE=$(/sbin/ifconfig eth0 | grep 'inet' | awk '{print $2}') #TODO: add ip-tools to use route selection
+    fi
+
+    if [[ -z "$P2_DNS" ]]
+    then
+        P2_INTERFACE=8.8.8.8
+    fi
+
         /usr/bin/p2pclient -l ${P2_EMAIL} -n "$P2_INTERFACE;$P2_DNS"
 
 else

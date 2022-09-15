@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-if [ "$USE_PACKETSTREAM" == "y" ]
+if [[ "$USE_PACKETSTREAM" == "y" ]]
 then
 
     while true;
@@ -11,7 +11,7 @@ then
         then
             echo $PID , $LC exiting
             kill -9 $PID
-            /command/s6-setuidgid picash /usr/bin/qemu-x86_64 /opt/packetstream/exit-node "${PS_ID}?client_version=20.202.1548"&
+            /usr/bin/qemu-x86_64 /opt/packetstream/exit-node "${PS_ID}?client_version=20.202.1548"&
             sleep 10
         else
             echo $PID , $LC not exiting

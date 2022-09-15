@@ -1,4 +1,4 @@
-#!/command/with-contenv sh
-/bin/traffmonetizer_service
+#!/command/with-contenv bash
+su picash -c "/bin/traffmonetizer_service"
 
 

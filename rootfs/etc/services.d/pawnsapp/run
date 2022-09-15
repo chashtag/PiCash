@@ -1,4 +1,4 @@
-#!/command/with-contenv sh
-/bin/pawnsapp_service
+#!/command/with-contenv bash
+su picash -c "/bin/pawnsapp_service"
 
 
