@@ -2,4 +2,6 @@ version: '2'
 
 services:
   picash:
+    env_file:
+      - settings.conf
     build: .
