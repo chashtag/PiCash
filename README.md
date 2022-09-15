@@ -56,13 +56,33 @@ build and run the container via `./run.sh`
 
 
 ---
-## Earnapp
+<br><br>
+# Earnapp
+Register an account.
 
-To register the host you must copy a paste a link into your browser that you are logged in to earnapp with.
+The container will give you a link that you need to paste into your browser to "link" the worker to your account. <b>This needs to be repeated per container instance!</b>
+<br><br><br>
 To get this code you can execute command below .
 
 ``` 
 docker exec -ti picash earnapp register | grep -Eo 'https.+'
 ```
+Set `USE_EARNAPP` to `y` in the `settings.conf` file.
+<br><br>Example
+```
+USE_EARNAPP=y
+```
+<br><br>
+# Honeygain
 
-## Honeygain
+Register an account.
+In the settings file, add your email to `HG_EMAIL` and password to `HG_PASSWORD` and set the `USE_HONEYGAIN` to `y`.
+<br><br>Example
+```
+USE_HONEYGAIN=y
+HG_EMAIL='example@example.com'
+HG_PASSWORD='MyP@$$W0rd'
+```
+<br><br><br>
+# Packet Stream
+Register an account. In the settings file set `USE_PACKET_STREAM` to `y` and `PS_ID` to your 
