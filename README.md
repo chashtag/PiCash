@@ -8,7 +8,7 @@ Currenlty installed programs are:
 - [x] Pawns.app (IPRoyal Pawns)
 - [x] PacketStream
 - [x] Peer2Profit
-- [ ] Traffmonetizer
+- [x] Traffmonetizer
 
 64bit Raspberry Pi's are supported (4, z2w, 3b+)
 
@@ -31,12 +31,28 @@ You will need an account at each of these sites
 
 
 ---
-## Install
+## Quick start
+Docker is required (maybe when fedora 37 lands we can look at using podman)
+### Docker installs
+> Ubuntu: https://docs.docker.com/engine/install/ubuntu/<br>
+> Debian: https://docs.docker.com/engine/install/debian/<br>
+> Raspbian: https://www.simplilearn.com/tutorials/docker-tutorial/raspberry-pi-docker
+
+
+<br>
+
+git clone onto a arm64 platform
+
+```
+git clone https://github.com/chashtag/PiCash.git && cd PiCash
+```
+
+Edit the `settings.conf` file
+
+build and run the container via `./run.sh`
 
 
 
-
-todo
 
 
 ---
