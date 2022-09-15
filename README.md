@@ -1,6 +1,6 @@
 # PiCash
 
-A lightweight docker image running many "passive" income applications, built for a Raspberry Pi and the Ubiquity Dream Machine Pro (UDM-Pro).
+A lightweight docker image running many "passive" income applications, built for a Raspberry Pi.
 
 Currenlty installed programs are:
 - [x] Honeygain
