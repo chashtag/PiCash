@@ -17,6 +17,7 @@ RUN DEBIAN_FRONTEND='noninteractive' \
        qemu-user \
        wget \
        xz-utils \
+       zip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -50,6 +51,10 @@ RUN curl -L https://github.com/chashtag/PiCash/releases/download/bin/p2pclient_0
 # Traffmonetizer
 RUN mkdir -p /opt/traffmonetizer && \
     curl -L https://github.com/chashtag/PiCash/releases/download/bin/traffmonetizer.tar.gz | tar -C /opt/traffmonetizer -zxf -
+
+
+# BitPing
+RUN wget https://downloads.bitping.com/node/linux.zip && unzip linux.zip -d /opt/bitping && rm -rf linux.zip
 
 COPY rootfs/ /
 

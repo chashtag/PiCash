@@ -23,7 +23,7 @@ You will need an account at each of these sites
 - Supported [Register Pawns.app(Formerly IPRoyal Pawns)](https://pawns.app?r=538917)
 - Supported [Register Packetstream](https://packetstream.io/?psr=3dq9)
 - Supported [Register Traffmonetizer](https://traffmonetizer.com/?aff=522583)
-- Supported[Register BitPing](https://app.bitping.com?r=3TGus9GO)
+- Supported [Register BitPing](https://app.bitping.com?r=3TGus9GO) *Crypto payout
 
 
 **These are affiliate links, please use them to support development
@@ -33,7 +33,10 @@ You will need an account at each of these sites
 
 
 ---
-## Quick start
+<br>
+<br>
+
+# Quick start
 Docker is required (maybe when fedora 37 lands we can look at using podman)
 ### Docker installs
 > Ubuntu: https://docs.docker.com/engine/install/ubuntu/<br>
@@ -109,7 +112,7 @@ USE_PEER2PROFIT=y
 P2_EMAIL='example@example.com'
 ```
 
-
+<br><br><br>
 
 # Pawns.app(IPPawns)
 Register for an account. In the settings file, add your email to `PA_EMAIL` and password to `PA_PASSWORD` and set the `USE_PAWNSAPP` to `y`.
@@ -121,7 +124,7 @@ USE_PAWNSAPP=y
 PA_EMAIL='example@example.com
 PA_PASSWORD='MyP@$$W0rd'
 ```
-
+<br><br><br>
 
 # Traffmonetizer
 Register for an account. In the settings file, add your `Application Token` to `TRAFF_TOKEN` and set the `USE_TRAFFMONETIZER` to `y`.
@@ -133,4 +136,16 @@ You can find the `Application Token` on your [dashboard](https://app.traffmoneti
 # Traffmonetizer
 USE_TRAFFMONETIZER=y
 TRAFF_TOKEN='ZXhhbXBsZUVYQU1QTEVleGFtcGxlRVhBTVBMRQo='
+```
+
+<br><br><br>
+# Bitping
+Register for an account. In the settings file, add your email to `BP_EMAIL` and password to `BP_PASSWORD` and set the `USE_BITPING` to `y`.
+
+<br><br>Example
+```
+# BitPing
+USE_BITPING=y
+BP_EMAIL='example@example.com'
+BP_PASSWORD='MyP@$$W0rd'
 ```
