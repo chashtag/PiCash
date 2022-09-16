@@ -10,7 +10,7 @@ else
 fi
 docker build . -t picash
 
-docker run -d --env-file ${SCRIPT_DIR}/settings.conf --name picash picash
+docker run -d --restart always --env-file ${SCRIPT_DIR}/settings.conf --name picash picash
 if [[ "$USE_EARNAPP" == "y" ]]
 then
     echo Waiting for 30 sec to stand up, will print the earnapp link when done
