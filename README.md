@@ -11,7 +11,7 @@ Currenlty installed programs are:
 - [x] Traffmonetizer
 - [x] BitPing
 
-64bit Raspberry Pi's are supported (4, z2w, 3b+)
+64bit Raspberry Pi's are supported (4, Zero2 W, 3b+)
 
 ---
 
@@ -57,7 +57,10 @@ Edit the `settings.conf` file
 build and run the container via `./run.sh`
 
 
-
+---
+### TO-DO:
+- [ ] make a multi arch build
+- [ ] make a one-liner build and install for supported OS's
 
 
 ---
