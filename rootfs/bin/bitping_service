@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [[ "$USE_BITPING" == "y" ]]
+then
+    if [[ -z "$BP_EMAIL" || -z "$BP_PASSWORD" ]]; then
+        echo ERROR: One or more honeygain settings are blank
+        exit 1
+    fi
+   su picash -c "/usr/bin/qemu-x86_64 ./bitping-node-amd64-linux --server --email $BP_EMAIL -password $BP_PASSWORD"
+else
+    sleep 60 #TODO: make this better, maybe make s6 just not launch it goodnuff for now
+fi
+

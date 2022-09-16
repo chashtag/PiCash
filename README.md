@@ -9,6 +9,7 @@ Currenlty installed programs are:
 - [x] PacketStream
 - [x] Peer2Profit
 - [x] Traffmonetizer
+- [x] BitPing
 
 64bit Raspberry Pi's are supported (4, z2w, 3b+)
 
@@ -22,6 +23,7 @@ You will need an account at each of these sites
 - Supported [Register Pawns.app(Formerly IPRoyal Pawns)](https://pawns.app?r=538917)
 - Supported [Register Packetstream](https://packetstream.io/?psr=3dq9)
 - Supported [Register Traffmonetizer](https://traffmonetizer.com/?aff=522583)
+- Supported[Register BitPing](https://app.bitping.com?r=3TGus9GO)
 
 
 **These are affiliate links, please use them to support development
@@ -100,16 +102,11 @@ PS_ID=abc123
 
 # Peer2Profit
 Register for an account. In the settings file set `USE_PEER2PROFIT` to `y` and `P2_EMAIL` to your email.
-
-If you would like to specify an interface to use, you must specify the IP address of the interface. The DNS is csv of preferred DNS Servers.
-<b>If these settings are omitted, it will just default to what the container is using</b>
 <br><br>Example
 ```
 # Peer2Profit
 USE_PEER2PROFIT=y
 P2_EMAIL='example@example.com'
-P2_INTERFACE=
-P2_DNS=
 ```
 
 

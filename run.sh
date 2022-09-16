@@ -18,3 +18,5 @@ then
     echo Use this link to register your worker
     docker exec -ti picash earnapp register | grep -Eo 'https.+'
 fi
+
+
