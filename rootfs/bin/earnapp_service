@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ "$USE_EARNAPP" == "y" ]]
+if [[ "$USE_EARNAPP" != "n" ]]
 then
     if [ ! -f /usr/bin/earnapp ]
     then

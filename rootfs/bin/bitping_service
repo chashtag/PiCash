@@ -1,12 +1,18 @@
 #!/bin/bash
 
-if [[ "$USE_BITPING" == "y" ]]
+if [[ "$USE_BITPING" != "n" ]]
 then
     if [[ -z "$BP_EMAIL" || -z "$BP_PASSWORD" ]]; then
         echo ERROR: One or more bitping settings are blank
         exit 1
     fi
-   su picash -c "/usr/bin/qemu-x86_64 /opt/bitping/release/bitping-node-amd64-linux --server --email $BP_EMAIL -password $BP_PASSWORD"
+    if [[ `uname -m` != "x86_64" ]]
+    then
+        su picash -c "/usr/bin/qemu-x86_64 /opt/bitping/release/bitping-node-amd64-linux --server --email $BP_EMAIL -password $BP_PASSWORD"
+    else
+        su picash -c "/opt/bitping/release/bitping-node-amd64-linux --server --email $BP_EMAIL -password $BP_PASSWORD"
+    fi
+    
 else
     sleep 60 #TODO: make this better, maybe make s6 just not launch it goodnuff for now
 fi

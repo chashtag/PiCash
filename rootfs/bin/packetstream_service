@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ "$USE_PACKETSTREAM" == "y" ]]
+if [[ "$USE_PACKETSTREAM" != "n" ]]
 then
 
     while true;
@@ -11,7 +11,12 @@ then
         then
             echo $PID , $LC exiting
             kill -9 $PID
-            /usr/bin/qemu-x86_64 /opt/packetstream/exit-node "${PS_ID}?client_version=20.202.1548"&
+            if [[ `uname -m` != "x86_64" ]]
+            then
+                /usr/bin/qemu-x86_64 /opt/packetstream/exit-node "${PS_ID}?client_version=20.202.1548"&
+            else
+                /opt/packetstream/exit-node "${PS_ID}?client_version=20.202.1548"&
+            fi
             sleep 10
         else
             echo $PID , $LC not exiting

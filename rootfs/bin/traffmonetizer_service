@@ -1,6 +1,6 @@
 #!/bin/bash
 cd /opt/traffmonetizer/
-if [[ "$USE_TRAFFMONETIZER" == "y" ]]
+if [[ "$USE_TRAFFMONETIZER" != "n" ]]
 then
     if [ -z $TRAFF_TOKEN ]
     then
