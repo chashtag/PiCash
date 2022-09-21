@@ -1,4 +1,3 @@
 #!/command/with-contenv bash
 exec /bin/bitping_service
-
-
+sleep 5

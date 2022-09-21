@@ -1,4 +1,3 @@
 #!/command/with-contenv bash
 exec /bin/honeygain_service
-
-
+sleep 5

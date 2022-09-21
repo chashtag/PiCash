@@ -9,7 +9,6 @@ else
     exit 1
 fi
 
-
 docker run -d --restart always --env-file ${SCRIPT_DIR}/settings.conf --name picash chashtag/picash
 
 if [[ "$USE_EARNAPP" == "y" ]]
