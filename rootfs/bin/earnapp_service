@@ -7,7 +7,7 @@ then
         curl -L https://brightdata.com/static/earnapp/install.sh > /tmp/earnapp.sh && bash /tmp/earnapp.sh -y
         earnapp stop
     else
-        /command/s6-setuidgid picash /usr/bin/earnapp run
+        /usr/bin/earnapp run
     fi
 else
     sleep 60 #TODO: make this better, maybe make s6 just not launch it goodnuff for now

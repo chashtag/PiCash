@@ -13,6 +13,7 @@ RUN apt-get update && \
        ca-certificates \
        curl \
        iproute2 \
+       lsb-release \
        nano \
        net-tools \
        procps \
