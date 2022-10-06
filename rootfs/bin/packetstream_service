@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ "$USE_PACKETSTREAM" != "n" ]]
+if [[ "$USE_PACKET_STREAM" != "n" ]]
 then
 
     while true;

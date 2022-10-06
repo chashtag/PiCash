@@ -2,7 +2,7 @@
 
 if [[ "$USE_PEER2PROFIT" != "n" ]]
 then
-        /usr/bin/p2pclient -l ${P2_EMAIL}
+    /usr/bin/p2pclient -l ${P2_EMAIL}
 
 else
     sleep 60 #TODO: make this better, maybe make s6 just not launch it goodnuff for now

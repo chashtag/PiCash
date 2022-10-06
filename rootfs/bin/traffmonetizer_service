@@ -5,6 +5,7 @@ then
     if [ -z $TRAFF_TOKEN ]
     then
         echo TRAFF_TOKEN Not set
+        sleep 60
         exit 1
     fi
 
