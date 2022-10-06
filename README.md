@@ -54,12 +54,25 @@ git clone https://github.com/chashtag/PiCash.git && cd PiCash
 
 Edit the `settings.conf` file
 
-build and run the container via `./run.sh`
+Build and run the container via `./run.sh`
+<br>
+<br>
+<br>
+
+To enable automatic updates you can use [watchtower](https://containrrr.dev/watchtower/)
+```
+docker run -d \
+--name watchtower \
+--restart always \
+-v /var/run/docker.sock:/var/run/docker.sock \
+containrrr/watchtower
+```
+
 
 
 ---
 ### TO-DO:
-- [ ] make a multi arch build
+- [x] make a multi arch build
 - [ ] make a one-liner build and install for supported OS's
 
 
