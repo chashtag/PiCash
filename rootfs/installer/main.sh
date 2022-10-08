@@ -30,14 +30,29 @@ else
     curl -L https://updates.peer2profit.app/peer2profit_0.48_amd64.deb > /tmp/p2p.deb
 fi
 
-dpkg -i /tmp/p2p.deb
+dpkg -x /tmp/p2p.deb /
 rm -rf /tmp/p2p.deb
 
 
 # Traffmonetizer
 mkdir -p /opt/traffmonetizer
-curl -L https://github.com/chashtag/PiCash/releases/download/bin/traffmonetizer.tar.gz | tar -C /opt/traffmonetizer -zxf -
+if [[ `uname -m` == "armv7l" ]]
+then 
+    curl -L https://github.com/chashtag/PiCash/releases/download/bin/traffmonetizer-arm7.tar.gz| tar -C /opt/traffmonetizer -zxf -
+else
+    curl -L https://github.com/chashtag/PiCash/releases/download/bin/traffmonetizer.tar.gz | tar -C /opt/traffmonetizer -zxf -
+fi
+
 
 
 # BitPing
-wget https://downloads.bitping.com/node/linux.zip && unzip linux.zip -d /opt/bitping && rm -rf linux.zip
+if [[ `uname -m` == "armv7l" ]]
+then 
+    wget https://downloads.bitping.com/node/armv7.zip && unzip armv7.zip -d /opt/bitping && rm -rf armv7.zip
+else
+    wget https://downloads.bitping.com/node/linux.zip && unzip linux.zip -d /opt/bitping && rm -rf linux.zip
+fi
+
+
+
+

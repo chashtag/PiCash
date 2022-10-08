@@ -2,8 +2,13 @@
 
 if [[ "$USE_PEER2PROFIT" != "n" ]]
 then
-    /usr/bin/p2pclient -l ${P2_EMAIL}
-
+    
+    if [[ `uname -m` != "aarch64" ]]
+    then
+        /usr/bin/qemu-aarch64 -L /usr/aarch64-linux-gnu/ /usr/bin/p2pclient -l ${P2_EMAIL}
+    else
+        /usr/bin/p2pclient -l ${P2_EMAIL}
+    fi
 else
     sleep 60 #TODO: make this better, maybe make s6 just not launch it goodnuff for now
 fi

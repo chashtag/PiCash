@@ -2,7 +2,6 @@
 
 if [[ "$USE_PACKET_STREAM" != "n" ]]
 then
-
     while true;
     do 
         PID=$(ps -aux | grep exit-node | grep -v grep | awk '{print $2}')

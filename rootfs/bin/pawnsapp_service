@@ -2,11 +2,13 @@
 
 if [[ "$USE_PAWNSAPP" != "n" ]]
 then
-    /usr/bin/pawns-cli \
-        -email=${PA_EMAIL} \
-        -password=${PA_PASSWORD} \
-        -device-name=`hostname` \
-        -accept-tos
+    if [[ `uname -m` != "aarch64" ]]
+    then
+        /usr/bin/qemu-arm /usr/bin/pawns-cli -email=${PA_EMAIL} -password=${PA_PASSWORD} -device-name=`hostname` -accept-tos
+    else
+        /usr/bin/pawns-cli -email=${PA_EMAIL} -password=${PA_PASSWORD} -device-name=`hostname` -accept-tos
+    fi
+    
 else
     sleep 60 #TODO: make this better, maybe make s6 just not launch it goodnuff for now
 fi

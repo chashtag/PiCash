@@ -7,12 +7,15 @@ ARG DEBIAN_FRONTEND='noninteractive'
 
 RUN apt-get update && \
     apt-get install -y \
+       apt-file \
        apt-transport-https \
        apt-utils \
        bash \
        ca-certificates \
        curl \
        iproute2 \
+       libc6-arm64-cross \
+       libstdc++6-arm64-cross \
        lsb-release \
        nano \
        net-tools \
@@ -25,7 +28,7 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/*
 
 RUN curl --fail https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz -SLo- | tar -C / -Jxpf - && \
-    curl --fail https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-`uname -m`.tar.xz -SLo- | tar -C / -Jxpf -
+    curl --fail https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-`uname -m| sed 's/armv7l/armhf/g'`.tar.xz -SLo- | tar -C / -Jxpf -
 
 COPY rootfs/ /
 

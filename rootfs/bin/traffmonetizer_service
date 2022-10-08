@@ -8,8 +8,16 @@ then
         sleep 60
         exit 1
     fi
+    if [[ `uname -m` == "aarch64" ]]
+    then
+        /opt/traffmonetizer/Cli start accept --token $TRAFF_TOKEN
+    elif [[ `uname -m` == "armv7l" ]]
+    then
+        /opt/traffmonetizer/Cli start accept --token $TRAFF_TOKEN
+    else
+        /usr/bin/qemu-aarch64 -L /usr/aarch64-linux-gnu/ /opt/traffmonetizer/Cli start accept --token $TRAFF_TOKEN
+    fi
 
-    /opt/traffmonetizer/Cli start accept --token $TRAFF_TOKEN
 
 else
     sleep 60 #TODO: make this better, maybe make s6 just not launch it goodnuff for now

@@ -6,11 +6,15 @@ then
         echo ERROR: One or more bitping settings are blank
         exit 1
     fi
-    if [[ `uname -m` != "x86_64" ]]
+    if [[ `uname -m` == "x86_64" ]]
     then
-        su picash -c "/usr/bin/qemu-x86_64 /opt/bitping/release/bitping-node-amd64-linux --server --email $BP_EMAIL -password $BP_PASSWORD"
+        /opt/bitping/release/bitping-node-amd64-linux --server --email $BP_EMAIL -password $BP_PASSWORD
+        
+    elif [[ `uname -m` == "armv7l" ]]
+        /opt/bitping/release/bitping-node-armv7-linux --server --email $BP_EMAIL -password $BP_PASSWORD
     else
-        su picash -c "/opt/bitping/release/bitping-node-amd64-linux --server --email $BP_EMAIL -password $BP_PASSWORD"
+        
+        /usr/bin/qemu-x86_64 /opt/bitping/release/bitping-node-amd64-linux --server --email $BP_EMAIL -password $BP_PASSWORD
     fi
     
 else
