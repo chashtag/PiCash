@@ -1,23 +1,26 @@
 #!/bin/bash
-
-if [[ "$USE_BITPING" != "n" ]]
+if ! ps aux | grep -q "[b]itping-node"
 then
-    if [[ -z "$BP_EMAIL" || -z "$BP_PASSWORD" ]]; then
-        echo ERROR: One or more bitping settings are blank
-        exit 1
-    fi
-    if [[ `uname -m` == "x86_64" ]]
+    if [[ "$USE_BITPING" != "n" ]]
     then
-        /opt/bitping/release/bitping-node-amd64-linux --server --email $BP_EMAIL -password $BP_PASSWORD
+        if [[ -z "$BP_EMAIL" || -z "$BP_PASSWORD" ]]; then
+            echo ERROR: One or more bitping settings are blank
+            exit 1
+        fi
+        if [[ `uname -m` == "x86_64" ]]
+        then
+            /opt/bitping/release/bitping-node-amd64-linux --server --email $BP_EMAIL -password $BP_PASSWORD
+        elif [[ `uname -m` == "armv7l" ]] || [[ `uname -m` == "aarch64" ]] 
+        then
+            /opt/bitping/release/bitping-node-armv7-linux --server --email $BP_EMAIL -password $BP_PASSWORD
+        else
+            
+            /usr/bin/qemu-x86_64 /opt/bitping/release/bitping-node-amd64-linux --server --email $BP_EMAIL -password $BP_PASSWORD
+        fi
         
-    elif [[ `uname -m` == "armv7l" ]]
-        /opt/bitping/release/bitping-node-armv7-linux --server --email $BP_EMAIL -password $BP_PASSWORD
     else
-        
-        /usr/bin/qemu-x86_64 /opt/bitping/release/bitping-node-amd64-linux --server --email $BP_EMAIL -password $BP_PASSWORD
+        sleep 60 #TODO: make this better, maybe make s6 just not launch it goodnuff for now
     fi
-    
 else
-    sleep 60 #TODO: make this better, maybe make s6 just not launch it goodnuff for now
+sleep 60 #TODO: make this better, maybe make s6 just not launch it goodnuff for now
 fi
-

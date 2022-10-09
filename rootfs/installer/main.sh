@@ -46,13 +46,13 @@ fi
 
 
 # BitPing
-if [[ `uname -m` == "armv7l" ]]
-then 
-    wget https://downloads.bitping.com/node/armv7.zip && unzip armv7.zip -d /opt/bitping && rm -rf armv7.zip
-else
-    wget https://downloads.bitping.com/node/linux.zip && unzip linux.zip -d /opt/bitping && rm -rf linux.zip
-fi
+wget https://downloads.bitping.com/node/armv7.zip && unzip armv7.zip -d /opt/bitping && rm -rf armv7.zip
+wget https://downloads.bitping.com/node/linux.zip && unzip linux.zip -d /opt/bitping && rm -rf linux.zip
 
 
 
 
+
+#logging
+mkdir /var/log/picash
+chmod 777 /var/log/picash

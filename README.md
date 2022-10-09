@@ -103,8 +103,8 @@ In the settings file, add your email to `HG_EMAIL` and password to `HG_PASSWORD`
 ```
 # Honeygain
 USE_HONEYGAIN=y
-HG_EMAIL='example@example.com'
-HG_PASSWORD='MyP@$$W0rd'
+HG_EMAIL=example@example.com
+HG_PASSWORD=MyP@$$W0rd
 ```
 <br><br><br>
 # Packet Stream
@@ -125,7 +125,7 @@ Register for an account. In the settings file set `USE_PEER2PROFIT` to `y` and `
 ```
 # Peer2Profit
 USE_PEER2PROFIT=y
-P2_EMAIL='example@example.com'
+P2_EMAIL=example@example.com
 ```
 
 <br><br><br>
@@ -137,8 +137,8 @@ Register for an account. In the settings file, add your email to `PA_EMAIL` and 
 ```
 # Pawns.app(IPPawns)
 USE_PAWNSAPP=y
-PA_EMAIL='example@example.com
-PA_PASSWORD='MyP@$$W0rd'
+PA_EMAIL=example@example.com
+PA_PASSWORD=MyP@$$W0rd
 ```
 <br><br><br>
 
@@ -151,7 +151,7 @@ You can find the `Application Token` on your [dashboard](https://app.traffmoneti
 ```
 # Traffmonetizer
 USE_TRAFFMONETIZER=y
-TRAFF_TOKEN='ZXhhbXBsZUVYQU1QTEVleGFtcGxlRVhBTVBMRQo='
+TRAFF_TOKEN=ZXhhbXBsZUVYQU1QTEVleGFtcGxlRVhBTVBMRQo=
 ```
 
 <br><br><br>
@@ -162,6 +162,6 @@ Register for an account. In the settings file, add your email to `BP_EMAIL` and 
 ```
 # BitPing
 USE_BITPING=y
-BP_EMAIL='example@example.com'
-BP_PASSWORD='MyP@$$W0rd'
+BP_EMAIL=example@example.com
+BP_PASSWORD=MyP@$$W0rd
 ```
