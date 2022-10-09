@@ -12,7 +12,7 @@ Currenlty installed programs are:
 - [x] BitPing
 
 
-64bit Raspberry Pi's are supported (4, Zero2 W, 3b+) aarch64, arm7l
+64/32bit Raspberry Pi's are supported (4, Zero2 W, 3b+) aarch64, arm7l
 ---
 
 

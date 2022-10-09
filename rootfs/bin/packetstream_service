@@ -1,6 +1,7 @@
 #!/bin/bash
 
 if [[ "$USE_PACKET_STREAM" != "n" ]]
+
 then
     while true;
     do 
@@ -12,9 +13,11 @@ then
             kill -9 $PID
             if [[ `uname -m` != "x86_64" ]]
             then
-                /usr/bin/qemu-x86_64 /opt/packetstream/exit-node "${PS_ID}?client_version=20.202.1548"&
+                PS_ID_REAL=$(/usr/bin/qemu-x86_64 /opt/packetstream/psdecode ${PS_ID})
+                /usr/bin/qemu-x86_64 /opt/packetstream/exit-node "${PS_ID_REAL}?client_version=20.202.1548"&
             else
-                /opt/packetstream/exit-node "${PS_ID}?client_version=20.202.1548"&
+                PS_ID_REAL=$(/opt/packetstream/psdecode ${PS_ID})
+                /opt/packetstream/exit-node "${PS_ID_REAL}?client_version=20.202.1548"&
             fi
             sleep 10
         else
