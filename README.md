@@ -11,8 +11,8 @@ Currenlty installed programs are:
 - [x] Traffmonetizer (x86_64 broke)
 - [x] BitPing
 
-64bit Raspberry Pi's are supported (4, Zero2 W, 3b+)
 
+64/32bit Raspberry Pi's are supported (4, Zero2 W, 3b+) aarch64, arm7l
 ---
 
 
