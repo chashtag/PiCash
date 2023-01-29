@@ -1,14 +1,29 @@
 #!/bin/bash
+LOGLOC=/var/log/picash/earnapp
+if [[ ! -z $STAGGER ]]
+then
+    sleep $[ ( $RANDOM % 30 )  + 1 ]s
+fi
 
+(
 if [[ "$USE_EARNAPP" != "n" ]]
 then
+    echo Starting Service
     if [ ! -f /usr/bin/earnapp ]
     then
         curl -L https://brightdata.com/static/earnapp/install.sh > /tmp/earnapp.sh && bash /tmp/earnapp.sh -y
         earnapp stop
+        /usr/bin/earnapp start
+        /usr/bin/earnapp run 2>&1 
     else
-        /usr/bin/earnapp run
+        /usr/bin/earnapp start
+        /usr/bin/earnapp run 2>&1 
     fi
+    echo Service crashed, restarting
 else
-    sleep 60 #TODO: make this better, maybe make s6 just not launch it goodnuff for now
+    echo Not running service sleeping...
+    sleep 360
 fi
+
+sleep 60
+) | rotatelogs -fDen 5 $LOGLOC 100M

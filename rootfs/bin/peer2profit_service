@@ -1,14 +1,25 @@
 #!/bin/bash
+LOGLOC=/var/log/picash/peer2profit
+if [[ ! -z $STAGGER ]]
+then
+    sleep $[ ( $RANDOM % 30 )  + 1 ]s
+fi
+DEF_ROUTE_IFACE=$(ip route get 1.1.1.1 | grep -Po "src\s(\K.+?)\s" |xargs)
 
+(
 if [[ "$USE_PEER2PROFIT" != "n" ]]
 then
-    
+    echo Service enabled, starting
     if [[ `uname -m` != "aarch64" ]]
     then
-        /usr/bin/qemu-aarch64 -L /usr/aarch64-linux-gnu/ /usr/bin/p2pclient -l ${P2_EMAIL}
+        /usr/bin/qemu-aarch64 -L /usr/aarch64-linux-gnu/ /usr/bin/p2pclient -l ${P2_EMAIL}  $(if [[ ! -z "${DNS}" ]]; then echo -ne "  \b-n $DEF_ROUTE_IFACE;$DNS"; fi)
     else
-        /usr/bin/p2pclient -l ${P2_EMAIL}
+        /usr/bin/p2pclient -l ${P2_EMAIL}  $(if [[ ! -z "${DNS}" ]]; then echo -ne " \b -n $DEF_ROUTE_IFACE;$DNS"; fi)
     fi
+    echo Service crashed restarting
 else
-    sleep 60 #TODO: make this better, maybe make s6 just not launch it goodnuff for now
+    echo Not running service sleeping...
+    sleep 360 
 fi
+sleep 60
+) | rotatelogs -fDen 5 $LOGLOC 100M

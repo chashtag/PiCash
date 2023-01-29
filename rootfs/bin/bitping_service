@@ -1,4 +1,12 @@
 #!/bin/bash
+LOGLOC=/var/log/picash/bitping
+
+if [[ ! -z $STAGGER ]]
+then
+    sleep $[ ( $RANDOM % 30 )  + 1 ]s
+fi
+
+(
 if ! ps aux | grep -q "[b]itping-node"
 then
     if [[ "$USE_BITPING" != "n" ]]
@@ -7,20 +15,27 @@ then
             echo ERROR: One or more bitping settings are blank
             exit 1
         fi
+        echo Starting Service
         if [[ `uname -m` == "x86_64" ]]
         then
-            /opt/bitping/release/bitping-node-amd64-linux --server --email $BP_EMAIL -password $BP_PASSWORD
+            echo Running x86
+            /opt/bitping/release/bitping-node-amd64-linux --server --email $BP_EMAIL -password $BP_PASSWORD 2>&1
         elif [[ `uname -m` == "armv7l" ]] || [[ `uname -m` == "aarch64" ]] 
         then
-            /opt/bitping/release/bitping-node-armv7-linux --server --email $BP_EMAIL -password $BP_PASSWORD
+            echo Running `uname -m`
+            /opt/bitping/release/bitping-node-armv7-linux --server --email $BP_EMAIL -password $BP_PASSWORD 2>&1
         else
-            
-            /usr/bin/qemu-x86_64 /opt/bitping/release/bitping-node-amd64-linux --server --email $BP_EMAIL -password $BP_PASSWORD
+            echo Running default `uname -m`
+            /usr/bin/qemu-x86_64 /opt/bitping/release/bitping-node-amd64-linux --server --email $BP_EMAIL -password $BP_PASSWORD 2>&1
         fi
-        
+        echo Service crashed, restarting
     else
-        sleep 60 #TODO: make this better, maybe make s6 just not launch it goodnuff for now
+        echo Not running service sleeping...
+        sleep 360
     fi
 else
-sleep 60 #TODO: make this better, maybe make s6 just not launch it goodnuff for now
+    
+    sleep 60 
 fi
+
+) | rotatelogs -fDen 5 $LOGLOC 100M

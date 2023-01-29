@@ -1,8 +1,15 @@
 #!/bin/bash
+LOGLOC=/var/log/picash/packetstream
+if [[ ! -z $STAGGER ]]
+then
+    sleep $[ ( $RANDOM % 30 )  + 1 ]s
+fi
 
+(
 if [[ "$USE_PACKET_STREAM" != "n" ]]
 
 then
+    echo Starting Service
     while true;
     do 
         PID=$(ps -aux | grep exit-node | grep -v grep | awk '{print $2}')
@@ -11,13 +18,17 @@ then
         then
             echo $PID , $LC exiting
             kill -9 $PID
-            if [[ `uname -m` != "x86_64" ]]
+            if [[ `uname -m` == "aarch64" ]]
+            then
+                PS_ID_REAL=$(/opt/packetstream/psdecode-arm64 ${PS_ID})
+                /opt/packetstream/exit-node-arm64 "${PS_ID_REAL}?client_version=20.202.1548"
+            elif [[ `uname -m` != "x86_64" ]]
             then
                 PS_ID_REAL=$(/usr/bin/qemu-x86_64 /opt/packetstream/psdecode ${PS_ID})
-                /usr/bin/qemu-x86_64 /opt/packetstream/exit-node "${PS_ID_REAL}?client_version=20.202.1548"&
+                /usr/bin/qemu-x86_64 /opt/packetstream/exit-node "${PS_ID_REAL}?client_version=20.202.1548" 
             else
                 PS_ID_REAL=$(/opt/packetstream/psdecode ${PS_ID})
-                /opt/packetstream/exit-node "${PS_ID_REAL}?client_version=20.202.1548"&
+                /opt/packetstream/exit-node "${PS_ID_REAL}?client_version=20.202.1548"
             fi
             sleep 10
         else
@@ -25,6 +36,10 @@ then
             sleep 10
         fi
     done
+    echo Service crashed restarting
 else
-    sleep 60 #TODO: make this better, maybe make s6 just not launch it goodnuff for now
+    echo Not running service sleeping...
+    sleep 360 #TODO: make this better, maybe make s6 just not launch it goodnuff for now
 fi
+sleep 60
+) | rotatelogs -fDen 5 $LOGLOC 100M

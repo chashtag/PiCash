@@ -18,8 +18,8 @@ chmod +x /usr/bin/pawns-cli
 
 
 # Packetstream
-mkdir -p /opt/packetstream
-curl -L https://github.com/chashtag/PiCash/releases/download/bin/packetstream.tar.gz | tar -C /opt/packetstream/ -zxf -
+#mkdir -p /opt/packetstream
+#curl -L https://github.com/chashtag/PiCash/releases/download/bin/packetstream.tar.gz | tar -C /opt/packetstream/ -zxf -
 
 
 # Peer2Profit

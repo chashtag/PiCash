@@ -1,14 +1,25 @@
 #!/bin/bash
+LOGLOC=/var/log/picash/pawns
+HOSTNAME=`hostname`
+if [[ ! -z $STAGGER ]]
+then
+    sleep $[ ( $RANDOM % 30 )  + 1 ]s
+fi
 
+(
 if [[ "$USE_PAWNSAPP" != "n" ]]
 then
+    echo Starting Service
     if [[ `uname -m` != "aarch64" ]]
     then
-        /usr/bin/qemu-arm /usr/bin/pawns-cli -email=${PA_EMAIL} -password=${PA_PASSWORD} -device-name=`hostname` -accept-tos
+        /usr/bin/qemu-arm /usr/bin/pawns-cli -email=${PA_EMAIL} -password=${PA_PASSWORD} -device-name=${HOSTNAME} -accept-tos 
     else
-        /usr/bin/pawns-cli -email=${PA_EMAIL} -password=${PA_PASSWORD} -device-name=`hostname` -accept-tos
+        /usr/bin/pawns-cli -email=${PA_EMAIL} -password=${PA_PASSWORD} -device-name=${HOSTNAME} -accept-tos 
     fi
-    
+    echo Service crashed restarting
 else
-    sleep 60 #TODO: make this better, maybe make s6 just not launch it goodnuff for now
+    echo Not running service sleeping...
+    sleep 360
 fi
+sleep 60
+) | rotatelogs -fDen 5 $LOGLOC 100M

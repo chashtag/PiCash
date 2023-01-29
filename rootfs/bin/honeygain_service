@@ -1,18 +1,28 @@
 #!/bin/bash
+LOGLOC=/var/log/picash/honeygain
+if [[ ! -z $STAGGER ]]
+then
+    sleep $[ ( $RANDOM % 30 )  + 1 ]s
+fi
 
+(
 if [[ "$USE_HONEYGAIN" != "n" ]]
 then
+    echo Starting Service
     if [[ -z "$HG_EMAIL" || -z "$HG_PASSWORD" ]]; then
         echo ERROR: One or more honeygain settings are blank
         exit 1
     fi
     if [[ `uname -m` != "x86_64" ]]
     then
-        /usr/bin/qemu-x86_64 -E LD_PRELOAD=/opt/honeygain/libhg.so.1.0.0 /opt/honeygain/honeygain -tou-accept -email $HG_EMAIL -pass $HG_PASSWORD -device `hostname`
+        /usr/bin/qemu-x86_64 -E LD_PRELOAD=/opt/honeygain/libhg.so.1.0.0 /opt/honeygain/honeygain -tou-accept -email $HG_EMAIL -pass $HG_PASSWORD -device `hostname` 2>&1 
     else
-       LD_PRELOAD=/opt/honeygain/libhg.so.1.0.0 /opt/honeygain/honeygain -tou-accept -email $HG_EMAIL -pass $HG_PASSWORD -device `hostname`
+       LD_PRELOAD=/opt/honeygain/libhg.so.1.0.0 /opt/honeygain/honeygain -tou-accept -email $HG_EMAIL -pass $HG_PASSWORD -device `hostname` 2>&1
     fi
+    echo Service crashed restarting
 else
-    sleep 60 #TODO: make this better, maybe make s6 just not launch it goodnuff for now
+    echo Not running service sleeping...
+    sleep 60 
 fi
-sleep 360 
+sleep 360
+) | rotatelogs -fDen 5 $LOGLOC 100M
