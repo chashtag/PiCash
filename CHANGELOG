@@ -1,0 +1,4 @@
+v1.1
+  - Added log rotation to prevent large log files
+  - Cleaned up services
+  - Use native binaries when possible
