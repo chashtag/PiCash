@@ -12,7 +12,7 @@ Currenlty installed programs are:
 - [x] BitPing
 
 
-64/32bit Raspberry Pi's are supported (4, Zero2 W, 3b+) aarch64, arm7l
+Raspberry Pi's running 64 bit OS's are supported (4, Zero2 W, 3b+) aarch64
 ---
 
 
@@ -165,3 +165,15 @@ USE_BITPING=y
 BP_EMAIL=example@example.com
 BP_PASSWORD=MyP@$$W0rd
 ```
+
+<br>
+<br>
+<br>
+<br>
+
+
+# Other stuff
+EarnApp should be the only one requiring persistent storage, adding a mount point to `<local_path>/earnapp/:/etc/earnapp/` will make it so you do not have to keep registering the host.
+<br>
+<br>
+All logs should be going to /var/log/picash/
